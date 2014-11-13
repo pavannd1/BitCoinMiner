@@ -25,7 +25,7 @@ object bitCoinMiner {
                 bBoss ! "Namaskara"
                 var localActor: Array[ActorRef] = new Array[ActorRef](3)
                 //siphon local Actors
-                for(i <- 0 to localActor.length-1) {
+            	for(i <- 0 to localActor.length-1) {
   			localActor(i) = system.actorOf(Props(new RemoteMiner(args(0),false)), name = ("LocalActor"+i)) 
 			bBoss.tell("Hello I am a local miner "+i+". Can I start work?",localActor(i)) 
 			bBoss.tell(Ready,localActor(i)) 
