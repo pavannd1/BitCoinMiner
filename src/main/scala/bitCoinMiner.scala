@@ -10,7 +10,7 @@ object bitCoinMiner {
         if(args.length > 0) {
             if(args(0).contains(".")) {
 	    		println("You are a bitCoin Miner, please wait until work is assigned to you")
-	            println("Connecting to server : "+args(0))
+	    		println("Connecting to server : "+args(0))
   		        println("akka.tcp://BitCoinMiners@"+args(0)+":5227/user/BigBoss")
   		        implicit val system = ActorSystem("LocalSystem")
   		        val remoteActor = system.actorOf(Props(new RemoteMiner(args(0),true)), name = "RemoteActor")  
