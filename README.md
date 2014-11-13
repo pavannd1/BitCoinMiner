@@ -21,14 +21,14 @@ To Run :
 
 local machine:
 $ sbt
-> compile
-> run <Number of leading zeroes in the bit coin>
+\> compile
+\> run <Number of leading zeroes in the bit coin>
 
 or scala bitCoinMiner <NumberofLeadingZeroes>
 
 remote machine : 
 $ sbt
-> compile
-> run <IP address of the machine running local workers>
+\> compile
+\> run <IP address of the machine running local workers>
 
 or scala bitCoinMiner <IP>
