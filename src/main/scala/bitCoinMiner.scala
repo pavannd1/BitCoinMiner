@@ -19,19 +19,19 @@ object bitCoinMiner {
   		        system.awaitTermination()
             } else {
                 println("Hello Big Boss, Lets mine some bitCoins today k value is "+args(0))
-  		        val system = ActorSystem("BitCoinMiners")
-  		        val bBoss = system.actorOf(Props(new BigBoss(Integer.parseInt(args(0)))), name = "BigBoss")
-  		        println(" BigBoss has started ");
+  		val system = ActorSystem("BitCoinMiners")
+  		val bBoss = system.actorOf(Props(new BigBoss(Integer.parseInt(args(0)))), name = "BigBoss")
+  		println(" BigBoss has started ");
                 bBoss ! "Namaskara"
                 var localActor: Array[ActorRef] = new Array[ActorRef](3)
                 //siphon local Actors
                 for(i <- 0 to localActor.length-1) {
-  			        localActor(i) = system.actorOf(Props(new RemoteMiner(args(0),false)), name = ("LocalActor"+i)) 
-			        bBoss.tell("Hello I am a local miner "+i+". Can I start work?",localActor(i)) 
-			        bBoss.tell(Ready,localActor(i)) 
-		        }
-		        system.awaitTermination()
-	        }	
+  			localActor(i) = system.actorOf(Props(new RemoteMiner(args(0),false)), name = ("LocalActor"+i)) 
+			bBoss.tell("Hello I am a local miner "+i+". Can I start work?",localActor(i)) 
+			bBoss.tell(Ready,localActor(i)) 
+		}
+		system.awaitTermination()
+	    }	
         } else {
             println("ERROR!Please enter a parameter value and retry")
         }
