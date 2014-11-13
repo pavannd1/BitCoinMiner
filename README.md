@@ -8,11 +8,11 @@ File structure:
 --+src
     |
     |-+main
-         |
-         |-+scala
-		|-project1.scala
-	 |-+resources
-		|-application.conf
+    	|
+    	|-+scala
+    		|-project1.scala
+    	|-+resources
+    		|-application.conf
 ____________________________________________________________________________________
 NOTE: CHANGE THE IP ADDRESS OF THE MACHINE IN application.conf
 
