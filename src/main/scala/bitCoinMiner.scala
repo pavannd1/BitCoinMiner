@@ -9,7 +9,7 @@ object bitCoinMiner {
     def main(args: Array[String]) {
         if(args.length > 0) {
             if(args(0).contains(".")) {
-	            println("You are a bitCoin Miner, please wait until work is assigned to you")
+	    		println("You are a bitCoin Miner, please wait until work is assigned to you")
 	            println("Connecting to server : "+args(0))
   		        println("akka.tcp://BitCoinMiners@"+args(0)+":5227/user/BigBoss")
   		        implicit val system = ActorSystem("LocalSystem")
@@ -77,36 +77,36 @@ class RemoteMiner(serverIP: String,rem: Boolean) extends Actor {
 		        sender ! Ready
 	        }
         case Assign(req) =>
-	        //println("Receiver k value is "+req(0)+" and multiplier is "+req(1))
+	    	// println("Receiver k value is "+req(0)+" and multiplier is "+req(1))
             var zeros = ""
             val md = java.security.MessageDigest.getInstance("SHA-256")
-	        for(j <- 1 to req(0)) {
+	    	for(j <- 1 to req(0)) {
 		        zeros = zeros + "0"
-	        }
-	        //println("Total zeros = "+zeros)
+	    	}
+	    	// println("Total zeros = "+zeros)
             val start: Long = System.currentTimeMillis
             var count: Int = 0
-	        var workUnit = 1000000
+            var workUnit = 1000000
             for (k <- 1 to workUnit) {
                 var text = "aholla;"+randomAlphaNumericString(req(1))
                 md.update(text.getBytes())
                 var result = bytes2hex(md.digest(), Option(""))
                 if(result.startsWith(zeros)) {
                     // println("Yes, Found Bitcoin")
-                    //println("Result is = "+result)
+                    // println("Result is = "+result)
                     // println("String = "+text)
                     // println("----------------- ")
 			        bitCoinsList = concat(bitCoinsList,Array(Array(text,result)))
 			        count = count + 1
                 }
-		        //println("time is "+(System.currentTimeMillis - start))
+		        // println("time is "+(System.currentTimeMillis - start))
             }
-	        //println("Done! Total bit coins found is "+count)
+	        // println("Done! Total bit coins found is "+count)
 	        var export = ofDim[Array[String]](bitCoinsList.length - 2)
 	        for(i <- 2 to bitCoinsList.length-1) {
 		        export(i-2)=bitCoinsList(i)
 	        }
-	        //println("Export length is "+export.length)
+	        // println("Export length is "+export.length)
 	        if(rem) {
 		        remote ! CompletedList(export)
 		        context.system.shutdown()
@@ -124,7 +124,7 @@ class BigBoss(k: Int) extends Actor {
     def receive = {
         case msg: String =>
             println(s"RemoteActor received message '$msg'")
-            //println(" Recevied K value is "+k)
+            // println(" Recevied K value is "+k)
         case Ready =>
             miners = miners + 1; 
 	        ttlminers = miners;
@@ -141,7 +141,7 @@ class BigBoss(k: Int) extends Actor {
         	        export(i-2)=bitCoinsList(i)
 	            }
 		        for(i <- 0 to export.length - 1) {
-		            //println("Coin "+i+" "+export(i)(0)+" : "+export(i)(1))
+		            // println("Coin "+i+" "+export(i)(0)+" : "+export(i)(1))
 		 	        println(export(i)(0)+" "+export(i)(1))
 		        }
 		        println("Total Bit Coins Found: "+ttl+" and Total number of miners: "+ttlminers)
