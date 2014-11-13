@@ -4,15 +4,17 @@ Bit coins are defined by hashed strings with a certain number of leading zeroes 
 ____________________________________________________________________________________
 File structure:
 ===============
----build.sbt
---+src
-    |
-    |-+main
-    	|
-    	|-+scala
-    		|-project1.scala
-    	|-+resources
-    		|-application.conf
+<pre>
+---build.sbt<br>
+--+src<br>
+    |<br>
+    |-+main<br>
+    	|<br>
+    	|-+scala<br>
+    		|-project1.scala<br>
+    	|-+resources<br>
+    		|-application.conf<br>
+</pre>
 ____________________________________________________________________________________
 NOTE: CHANGE THE IP ADDRESS OF THE MACHINE IN application.conf
 
@@ -20,15 +22,15 @@ To Run :
 ========
 
 local machine:
-$ sbt
-\> compile
-\> run <Number of leading zeroes in the bit coin>
+$ sbt<br>
+\> compile<br>
+\> run \<Number of leading zeroes in the bit coin\><br>
 
-or scala bitCoinMiner <NumberofLeadingZeroes>
+or scala bitCoinMiner \<NumberofLeadingZeroes\>
 
 remote machine : 
-$ sbt
-\> compile
-\> run <IP address of the machine running local workers>
+$ sbt<br>
+\> compile<br>
+\> run \<IP address of the machine running local workers\><br>
 
-or scala bitCoinMiner <IP>
+or scala bitCoinMiner \<IP\>
